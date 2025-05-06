@@ -899,7 +899,7 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
-        <button id="theme-toggle">Toggle Theme</button>
+        <button id="theme-toggle">Download Resume</button>
     </header>
     <main>
         <section id="hero" class="section">
@@ -1117,19 +1117,19 @@
         </div>
     </div>
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
+        // Download Resume
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-            themeToggle.textContent = document.body.classList.contains('light-mode') ? 'Dark Theme' : 'Light Theme';
-        });
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            themeToggle.textContent = 'Dark Theme';
-        } else {
-            themeToggle.textContent = 'Light Theme';
-        }
+    // Replace this with your actual Google Drive *direct download* link
+    const fileUrl = 'https://drive.google.com/file/d/12meRi3wMW0nAyuI31Wdu8FvAL4hwo4wN/view?usp=drive_link';
+    
+    // Create an anchor element and simulate a click
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'cv.pdf';  // Optional: Suggests a filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
 
         // Smooth Scrolling and Active Navigation
         const navLinks = document.querySelectorAll('.nav-link');
