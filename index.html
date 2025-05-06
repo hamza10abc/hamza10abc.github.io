@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Mohammad Hamza Husain - Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0a0e1a;
+            color: #d1d5db;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Techy Background */
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        header.scrolled {
+            transform: translateY(-5px);
+            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #00f0ff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff00ff, #00f0ff);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ff00ff;
+        }
+
+        #theme-toggle {
+            background: linear-gradient(45deg, #00f0ff, #ff00ff);
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #00f0ff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #ff00ff;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #00f0ff, #ff00ff);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            margin-bottom: 0.8rem;
+        }
+
+        p,
+        li {
+            font-size: 0.95rem;
+            color: #a1a1aa;
+        }
+
+        /* Animations */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+            }
+        }
+
+        @keyframes hologram {
+            0% {
+                opacity: 0.3;
+                transform: translateY(20px);
+                filter: blur(2px);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 0.3;
+                transform: translateY(20px);
+                filter: blur(2px);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 8rem 1rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ff00ff, #00f0ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Project Section */
+        #projects {
+            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.1), transparent);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+        }
+
+        .project-card {
+            perspective: 1500px;
+            position: relative;
+            height: 350px;
+            background: none;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .project-card:hover .project-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .project-card-front,
+        .project-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.95), rgba(20, 30, 60, 0.95));
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .project-card-front::before,
+        .project-card-back::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.2), transparent);
+            transition: transform 0.7s ease;
+            z-index: -1;
+        }
+
+        .project-card:hover .project-card-front::before,
+        .project-card:hover .project-card-back::before {
+            transform: rotate(45deg) scale(1.5);
+        }
+
+        .project-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00f0ff;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tag {
+            background: rgba(0, 240, 255, 0.3);
+            color: #00f0ff;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-tag:hover::before {
+            left: 100%;
+        }
+
+        .project-tag:hover {
+            background: rgba(255, 0, 255, 0.4);
+            color: #ff00ff;
+            transform: scale(1.05);
+        }
+
+        .project-card-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-card-canvas {
+            opacity: 0.5;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.95), rgba(20, 30, 60, 0.95));
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+            animation: modalPop 0.4s ease;
+        }
+
+        @keyframes modalPop {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.8rem;
+            color: #ff00ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #00f0ff;
+            transform: rotate(90deg);
+        }
+
+        /* Experience and Education */
+        .experience-item,
+        .education-item {
+            background: rgba(10, 14, 26, 0.9);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover,
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .experience-item ul,
+        .education-item ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .experience-item li::before,
+        .education-item li::before {
+            content: '→';
+            color: #00f0ff;
+            margin-right: 0.5rem;
+        }
+
+        /* Skills Constellation Section */
+        .skills-constellation-container {
+            width: 100%;
+            min-height: 800px;
+            position: relative;
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #010306, #0a0e1a);
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+            background-size: 100% 100%, 100% 100%, 100% 100%;
+            animation: pulse-border 2s infinite;
+            display: block;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        body.light-mode .skills-constellation-container {
+            background: linear-gradient(to bottom, #b0b4c1, #d1d5db);
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 30%, rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 50% 70%, rgba(0, 0, 0, 0.1) 2px, transparent 2px);
+            border-color: #1e40af;
+            animation: pulse-border-light 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 10px #00d4ff, 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px #00d4ff, 0 0 30px rgba(0, 212, 255, 0.7);
+            }
+
+            100% {
+                box-shadow: 0 0 10px #00d4ff, 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+        }
+
+        @keyframes pulse-border-light {
+            0% {
+                box-shadow: 0 0 10px #1e40af, 0 0 20px rgba(30, 64, 175, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px #1e40af, 0 0 30px rgba(30, 64, 175, 0.7);
+            }
+
+            100% {
+                box-shadow: 0 0 10px #1e40af, 0 0 20px rgba(30, 64, 175, 0.5);
+            }
+        }
+
+        #skills-constellation-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .skills-constellation-container {
+                min-height: 600px;
+            }
+        }
+
+        /* Contact Section */
+        #contact {
+            background: radial-gradient(circle at center, rgba(255, 0, 255, 0.1), transparent);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info a {
+            color: #00f0ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #ff00ff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            background: rgba(10, 14, 26, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            grid-column: span 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form textarea {
+            grid-column: span 2;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-form button {
+            grid-column: span 2;
+            padding: 1rem;
+            background: linear-gradient(45deg, #ff00ff, #00f0ff);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-form button:hover::before {
+            left: 100%;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(45deg, #ff00ff, #00f0ff);
+            color: #fff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .floating-contact:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, rgba(10, 14, 26, 0.95), rgba(20, 30, 60, 0.95));
+            padding: 2rem;
+            text-align: center;
+            color: #a1a1aa;
+            border-top: 2px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 -5px 15px rgba(0, 240, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #00f0ff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff00ff;
+        }
+
+        footer p {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+
+        .light-mode header,
+        .light-mode .project-card-front,
+        .light-mode .project-card-back,
+        .light-mode .experience-item,
+        .light-mode .education-item,
+        .light-mode .modal-content,
+        .light-mode .contact-form,
+        .light-mode footer {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .light-mode nav a,
+        .light-mode .contact-info a,
+        .light-mode .footer-links a {
+            color: #0284c7;
+        }
+
+        .light-mode nav a:hover,
+        .light-mode nav a.active,
+        .light-mode .contact-info a:hover,
+        .light-mode .footer-links a:hover {
+            color: #c026d3;
+        }
+
+        .light-mode nav a::after {
+            background: #c026d3;
+        }
+
+        .light-mode #theme-toggle,
+        .light-mode .cta-button,
+        .light-mode .contact-form button,
+        .light-mode .floating-contact {
+            background: linear-gradient(45deg, #0284c7, #c026d3);
+        }
+
+        .light-mode h1,
+        .light-mode .project-card h3 {
+            color: #0284c7;
+            text-shadow: none;
+        }
+
+        .light-mode h2 {
+            color: #c026d3;
+            text-shadow: none;
+        }
+
+        .light-mode h2::after {
+            background: linear-gradient(90deg, #0284c7, #c026d3);
+        }
+
+        .light-mode .project-card,
+        .light-mode .experience-item,
+        .light-mode .education-item,
+        .light-mode .contact-form {
+            border: 1px solid rgba(2, 132, 199, 0.3);
+        }
+
+        .light-mode .project-card:hover,
+        .light-mode .experience-item:hover,
+        .light-mode .education-item:hover {
+            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
+        }
+
+        .light-mode .contact-form input,
+        .light-mode .contact-form textarea {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1f2937;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .project-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form textarea,
+            .contact-form button {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .project-card {
+                height: 300px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            #hero {
+                padding: 6rem 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            p,
+            li {
+                font-size: 0.85rem;
+            }
+
+            .cta-button,
+            .floating-contact {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                height: 280px;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="background-canvas"></canvas>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle">Toggle Theme</button>
+    </header>
+    <main>
+        <section id="hero" class="section">
+            <div class="container">
+                <h1>Syed Mohammad Hamza Husain</h1>
+                <p>AI/ML Innovator | Android Developer | IoT Specialist</p>
+                <p>Engineering the future with visionary technology.</p>
+                <a href="#projects" class="cta-button">Explore My Projects</a>
+            </div>
+        </section>
+        <section id="about" class="section animate-in">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>With roots in the UAE and advanced education at Aligarh Muslim University, I merge global
+                    perspectives with expertise in AI/ML, Android development, and IoT. My drive for innovation fuels
+                    solutions that redefine industries.</p>
+                <p>Leading tech initiatives and securing accolades like AMU HACKS 2.0, I excel in collaborative
+                    settings, mentoring peers and pushing the boundaries of technology.</p>
+                <p><strong>Connect:</strong> <a href="https://www.linkedin.com/in/s-m-hamza-husain/"
+                        target="_blank">LinkedIn</a> | <a href="https://github.com/hamza10abc/"
+                        target="_blank">GitHub</a></p>
+            </div>
+        </section>
+        <section id="projects" class="section animate-in">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card" data-title="Clinical Decision Suggestion System (CDSS)"
+                        data-description="An AI-powered system to assist radiologists by validating investigation suggestions using Llama 3.2 and Irefer guidelines, integrated with WHO’s ICD-10 codes for precise, evidence-based recommendations.<br><strong>Technologies:</strong> Python, Flask, Llama 3.2, Chroma">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <canvas class="project-card-canvas"></canvas>
+                                <h3>Clinical Decision Suggestion System</h3>
+                                <p>AI-driven radiology support aligned with global standards.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Python</span>
+                                    <span class="project-tag">Flask</span>
+                                    <span class="project-tag">LLM</span>
+                                    <span class="project-tag">Chroma</span>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <canvas class="project-card-canvas"></canvas>
+                                <p>Enhances clinical decision-making with evidence-based radiology suggestions.</p>
+                                <button class="cta-button"
+                                    onclick="openModal(this.parentElement.parentElement.parentElement)">Learn
+                                    More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-title="Driver Drowsiness Detection System"
+                        data-description="A road safety system detecting driver fatigue via real-time visual analysis, issuing alerts to prevent accidents.<br><strong>Technologies:</strong> Python, Google Colab, OpenCV, Pygame<br><a href='https://github.com/hamza10abc/Driver-Drowsiness-Detection-System' target='_blank'>GitHub</a>">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <canvas class="project-card-canvas"></canvas>
+                                <h3>Driver Drowsiness Detection</h3>
+                                <p>Real-time fatigue monitoring for enhanced road safety.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Python</span>
+                                    <span class="project-tag">OpenCV</span>
+                                    <span class="project-tag">Pygame</span>
+                                    <span class="project-tag">Google Colab</span>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <canvas class="project-card-canvas"></canvas>
+                                <p>Uses visual analysis to ensure driver alertness.</p>
+                                <button class="cta-button"
+                                    onclick="openModal(this.parentElement.parentElement.parentElement)">Learn
+                                    More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-title="SMART: Student Management and Retention Technology"
+                        data-description="A web app with IoT integration for managing student lifecycles, featuring RFID-based attendance tracking and dynamic course tools.<br><strong>Technologies:</strong> HTML, CSS, JavaScript, PHP, C++, Arduino IDE<br><strong>Hardware:</strong> Uno R3, ESP8266, MFRC522, RFID tags<br><a href='https://github.com/hamza10abc/Project-SMART' target='_blank'>GitHub</a>">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <canvas class="project-card-canvas"></canvas>
+                                <h3>SMART: Student Management</h3>
+                                <p>IoT-enabled platform for educational institutions.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">HTML</span>
+                                    <span class="project-tag">JavaScript</span>
+                                    <span class="project-tag">PHP</span>
+                                    <span class="project-tag">Arduino</span>
+                                    <span class="project-tag">IoT</span>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <canvas class="project-card-canvas"></canvas>
+                                <p>Streamlines student management with IoT integration.</p>
+                                <button class="cta-button"
+                                    onclick="openModal(this.parentElement.parentElement.parentElement)">Learn
+                                    More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="experience" class="section animate-in">
+            <div class="container">
+                <h2>Experience</h2>
+                <div class="experience-item">
+                    <h3>AI/ML Intern, Technologies, India</h3>
+                    <p><em>Jan 2025 - Present</em></p>
+                    <ul>
+                        <li>Developed Flask APIs for the Clinical Decision Suggestion System using RAG.</li>
+                        <li>Built scalable backend systems with ASP.NET Core and C#.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>App Developer, AMURoboclub, Aligarh Muslim University</h3>
+                    <p><em>May 2024 - Present</em></p>
+                    <ul>
+                        <li>Created an Android app for event registration and member tracking.</li>
+                        <li>Led IoT workshops integrating Arduino with Android.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Organizing Committee Member, ICECI-2023</h3>
+                    <p><em>Feb 2023</em></p>
+                    <ul>
+                        <li>Facilitated technical discussions and event logistics for an international conference.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="education" class="section animate-in">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>M.Sc. in Cybersecurity and Digital Forensics</h3>
+                    <p>Aligarh Muslim University</p>
+                    <p>2023 - Present</p>
+                </div>
+                <div class="education-item">
+                    <h3>B.Sc. (Honors) in Computer Applications</h3>
+                    <p>Aligarh Muslim University</p>
+                    <p>2020 - 2023</p>
+                </div>
+                <div class="education-item">
+                    <h3>Intermediate (PCMC)</h3>
+                    <p>Emirates Future Int’l Academy, Abu Dhabi, UAE</p>
+                    <p>2018 - 2020</p>
+                    <ul>
+                        <li>President, IT/Robotics Club</li>
+                        <li>Vice-President, Innovation Club</li>
+                    </ul>
+                </div>
+                <div class="education-item">
+                    <h3>High School</h3>
+                    <p>Emirates Future Int’l Academy, Abu Dhabi, UAE</p>
+                    <p>2017 - 2018</p>
+                </div>
+            </div>
+        </section>
+        <section id="certifications" class="section animate-in">
+            <div class="container">
+                <h2>Certifications</h2>
+                <ul>
+                    <li>Google Developer Student Club – Android Study Jam</li>
+                    <li>CODEHAWK – Special Position (CSS & GDSC AMU)</li>
+                    <li>Google Cloud Computing Foundations</li>
+                    <li>Level 3: GenAI (Google)</li>
+                    <li>AMU HACKS 2.0 – Second Position</li>
+                    <li>Elite Coders Compete (Codechef & Codeblocks)</li>
+                </ul>
+            </div>
+        </section>
+        <section id="skills" class="section animate-in">
+            <div class="container">
+                <h2>Skills Constellation</h2>
+                <div class="skills-constellation-container">
+                    <canvas id="skills-constellation-canvas"></canvas>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="section animate-in">
+            <div class="container">
+                <h2>Contact</h2>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:hamza10abc@gmail.com">hamza10abc@gmail.com</a>
+                    </p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/s-m-hamza-husain/"
+                            target="_blank">s-m-hamza-husain</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/hamza10abc/" target="_blank">hamza10abc</a>
+                    </p>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <a href="#contact" class="floating-contact">Contact Me</a>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/s-m-hamza-husain/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/hamza10abc/" target="_blank">GitHub</a>
+                <a href="mailto:hamza10abc@gmail.com">Email</a>
+            </div>
+            <p>© 2025 Syed Mohammad Hamza Husain. All rights reserved.</p>
+        </div>
+    </footer>
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+            themeToggle.textContent = document.body.classList.contains('light-mode') ? 'Dark Theme' : 'Light Theme';
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.textContent = 'Dark Theme';
+        } else {
+            themeToggle.textContent = 'Light Theme';
+        }
+
+        // Smooth Scrolling and Active Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Section Visibility Observer
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        sections.forEach(section => observer.observe(section));
+
+        // Project Modal
+        const modal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const closeBtn = document.querySelector('.close');
+        function openModal(card) {
+            modalTitle.textContent = card.dataset.title;
+            modalDescription.innerHTML = card.dataset.description;
+            modal.style.display = 'flex';
+        }
+        closeBtn.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', e => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+
+        // Form Submission (Demo)
+        document.querySelector('.contact-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            console.log('Form submitted:', Object.fromEntries(formData));
+            alert('Message sent! (Demo mode - check console for form data)');
+            e.target.reset();
+        });
+
+        // Techy Background with Cursor Interaction
+        const backgroundCanvas = document.getElementById('background-canvas');
+        const bgCtx = backgroundCanvas.getContext('2d');
+        backgroundCanvas.width = window.innerWidth;
+        backgroundCanvas.height = window.innerHeight;
+        const bgParticles = [];
+        let mouseX = 0;
+        let mouseY = 0;
+
+        class BackgroundParticle {
+            constructor() {
+                this.x = Math.random() * backgroundCanvas.width;
+                this.y = Math.random() * backgroundCanvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 100) {
+                    this.x -= dx * 0.02;
+                    this.y -= dy * 0.02;
+                    this.opacity = Math.min(this.opacity + 0.02, 1);
+                } else {
+                    this.opacity = Math.max(this.opacity - 0.01, 0.2);
+                }
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > backgroundCanvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > backgroundCanvas.height) this.speedY *= -1;
+            }
+            draw() {
+                bgCtx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+                bgCtx.beginPath();
+                bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                bgCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 100; i++) {
+            bgParticles.push(new BackgroundParticle());
+        }
+
+        function animateBackground() {
+            bgCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+            bgParticles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateBackground);
+        }
+        animateBackground();
+
+        // Project Card Particle Effects
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            const canvas = card.querySelector('.project-card-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = card.offsetWidth;
+            canvas.height = card.offsetHeight;
+            const particles = [];
+
+            class CardParticle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                    this.opacity = 0;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                    this.opacity = card.matches(':hover') ? Math.min(this.opacity + 0.05, 0.8) : Math.max(this.opacity - 0.02, 0);
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 20; i++) {
+                particles.push(new CardParticle());
+            }
+
+            function animateCard() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animateCard);
+            }
+            animateCard();
+
+            card.addEventListener('click', () => openModal(card));
+        });
+
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        document.addEventListener('touchmove', e => {
+            const touch = e.touches[0];
+            mouseX = touch.clientX;
+            mouseY = touch.clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            backgroundCanvas.width = window.innerWidth;
+            backgroundCanvas.height = window.innerHeight;
+            projectCards.forEach(card => {
+                const canvas = card.querySelector('.project-card-canvas');
+                canvas.width = card.offsetWidth;
+                canvas.height = card.offsetHeight;
+            });
+        });
+
+        // Scroll-Based Animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.project-card, .experience-item, .education-item');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll();
+
+        // Initial Animation Setup
+        document.querySelectorAll('.project-card, .experience-item, .education-item').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        });
+
+        // Skills Constellation
+        const skillsConstellationCanvas = document.getElementById('skills-constellation-canvas');
+        let skillsConstellationCtx = null;
+        try {
+            skillsConstellationCtx = skillsConstellationCanvas.getContext('2d');
+            console.log('Skills constellation canvas context initialized:', !!skillsConstellationCtx);
+        } catch (error) {
+            console.error('Failed to get 2D context for skills constellation canvas:', error);
+        }
+        let skillsConstellationCanvasWidth, skillsConstellationCanvasHeight;
+        let skillsFrameCount = 0;
+
+        const skillsConstellationData = [
+            { name: 'Python', icon: 'fab fa-python', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/Python.png', category: 'Programming' },
+            { name: 'Java', icon: 'fab fa-java', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/java.png', category: 'Programming' },
+            { name: 'C', icon: 'fas fa-c', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/c.png', category: 'Programming' },
+            { name: 'C++', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/cpp.png', category: 'Programming' },
+            { name: 'C#', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/csharp.png', category: 'Programming' },
+            { name: 'Kotlin', icon: 'fab fa-android', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/kotlin.png', category: 'Programming' },
+            { name: 'Bash', icon: 'fas fa-terminal', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/bash.png', category: 'Programming' },
+            { name: 'Arduino', icon: 'fas fa-microchip', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/arduino.png', category: 'Programming' },
+            { name: 'SQL', icon: 'fas fa-database', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/sql.png', category: 'Programming' },
+            { name: 'Langchain', icon: 'fas fa-link', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/langchain.png', category: 'Frameworks' },
+            { name: 'Flask', icon: 'fas fa-flask', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/flask.png', category: 'Frameworks' },
+            { name: 'DSPy', icon: 'fas fa-cogs', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/dspy.png', category: 'Frameworks' },
+            { name: 'OpenCV', icon: 'fas fa-camera', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/opencv.png', category: 'Frameworks' },
+            { name: 'ASP.NET Core', icon: 'fas fa-server', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/asp_dot_net.png', category: 'Frameworks' },
+            { name: 'Matplotlib', icon: 'fas fa-chart-line', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/matplotlib.png', category: 'Frameworks' },
+            { name: 'Numpy', icon: 'fas fa-calculator', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/numpy.png', category: 'Frameworks' },
+            { name: 'Pygame', icon: 'fas fa-gamepad', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/pygame.png', category: 'Frameworks' },
+            { name: 'Android Studio', icon: 'fab fa-android', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/android_studio.png', category: 'Tools' },
+            { name: 'Firebase', icon: 'fas fa-fire', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/firebase.png', category: 'Tools' },
+            { name: 'Arduino IDE', icon: null, logoUrl: null, category: 'Tools' },
+            { name: 'Blender', icon: 'fas fa-cube', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/blender.png', category: 'Tools' },
+            { name: 'HTML', icon: 'fab fa-html5', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/html.png', category: 'Web' },
+            { name: 'CSS', icon: 'fab fa-css3-alt', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/css.png', category: 'Web' },
+            { name: 'JavaScript', icon: 'fab fa-js', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/javascript.png', category: 'Web' },
+            { name: 'PHP', icon: 'fab fa-php', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/php.png', category: 'Web' },
+            { name: 'MySQL', icon: 'fas fa-database', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/mysql.png', category: 'Databases' },
+            { name: 'NoSQL', icon: null, logoUrl: null, category: 'Databases' },
+            { name: 'ChromaDB', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/chroma.png', category: 'Databases' },
+            { name: 'PostgreSQL', icon: 'fas fa-database', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/postgre.png', category: 'Databases' },
+            { name: 'Uno R3', icon: 'fas fa-microchip', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/unor3.png', category: 'Hardware' },
+            { name: 'ESP8266', icon: 'fas fa-wifi', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/esp8266.png', category: 'Hardware' },
+            { name: 'MFRC522', icon: 'fas fa-tags', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/mfrc522.png', category: 'Hardware' },
+            { name: 'HC-SR04', icon: 'fas fa-ruler', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/hcsr04.png', category: 'Hardware' },
+            { name: 'SIM900A', icon: null, logoUrl: null, category: 'Hardware' },
+            { name: 'Pro Micro', icon: 'fas fa-microchip', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/pro_micro.png', category: 'Hardware' },
+            { name: 'Llama 3.1', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/ollama.png', category: 'LLMs' },
+            { name: 'Llama 3.2', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/ollama.png', category: 'LLMs' },
+            { name: 'Mistral', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/mistral.png', category: 'LLMs' },
+            { name: 'nomic-embed', icon: null, logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/nomic.png', category: 'LLMs' },
+            { name: 'English', icon: 'fas fa-globe', logoUrl: 'https://raw.githubusercontent.com/hamza10abc/hamza10abc.github.io/refs/heads/main/img/english.png', category: 'Languages' }
+        ];
+
+        // Preload images
+        const skillsImageCache = {};
+        skillsConstellationData.forEach(skill => {
+            if (skill.logoUrl) {
+                const img = new Image();
+                img.src = skill.logoUrl;
+                img.crossOrigin = 'anonymous';
+                skillsImageCache[skill.name] = img;
+                img.onload = () => console.log(`Loaded logo for ${skill.name}`);
+                img.onerror = () => console.warn(`Failed to load logo for ${skill.name}`);
+            }
+        });
+
+        class SkillsConstellationWeb {
+            constructor(canvas, ctx, skills) {
+                this.canvas = canvas;
+                this.ctx = ctx;
+                this.springConstant = 0.02;
+                this.damping = 0.8;
+                this.maxFloatRadius = 0;
+                this.categoryColors = {
+                    Programming: '#00f0ff',
+                    Frameworks: '#ff00ff',
+                    Tools: '#00ff00',
+                    Web: '#ff9900',
+                    Databases: '#9900ff',
+                    Hardware: '#ff3333',
+                    LLMs: '#33ccff',
+                    Languages: '#ffff00'
+                };
+                this.skills = this.scatterNodes(skills);
+                this.draggedNode = null;
+                this.hoveredNode = null;
+                console.log(`SkillsConstellationWeb initialized with ${this.skills.length} nodes`);
+                this.initEventListeners();
+                this.resizeCanvas();
+            }
+
+            scatterNodes(skills) {
+                const nodes = skills.map(skill => ({
+                    ...skill,
+                    px: 0,
+                    py: 0,
+                    vx: 0,
+                    vy: 0,
+                    fx: 0,
+                    fy: 0,
+                    isDragging: false,
+                    pulseRadius: 0,
+                    pulseTime: 0,
+                    isHovered: false
+                }));
+
+                nodes.forEach(node => {
+                    node.px = this.nodeRadius + Math.random() * (this.canvas.width - 2 * this.nodeRadius);
+                    node.py = this.nodeRadius + Math.random() * (this.canvas.height - 2 * this.nodeRadius);
+                });
+
+                const iterations = 100;
+                const repulsionStrength = 0.1;
+                const centerStrength = 0.0001;
+
+                for (let i = 0; i < iterations; i++) {
+                    nodes.forEach((node, idx) => {
+                        let fx = 0;
+                        let fy = 0;
+
+                        nodes.forEach((other, otherIdx) => {
+                            if (idx !== otherIdx) {
+                                const dx = node.px - other.px;
+                                const dy = node.py - other.py;
+                                const distance = Math.sqrt(dx * dx + dy * dy) || 0.1;
+                                if (distance < this.collisionDistance) {
+                                    const force = (this.collisionDistance - distance) * repulsionStrength;
+                                    fx += (dx / distance) * force;
+                                    fy += (dy / distance) * force;
+                                }
+                            }
+                        });
+
+                        const centerX = this.canvas.width / 2;
+                        const centerY = this.canvas.height / 2;
+                        const dxCenter = centerX - node.px;
+                        const dyCenter = centerY - node.py;
+                        fx += dxCenter * centerStrength;
+                        fy += dyCenter * centerStrength;
+
+                        node.vx = (node.vx || 0) + fx;
+                        node.vy = (node.vy || 0) + fy;
+                        node.vx *= 0.9;
+                        node.vy *= 0.9;
+                        node.px += node.vx;
+                        node.py += node.vy;
+
+                        node.px = Math.max(this.nodeRadius, Math.min(this.canvas.width - this.nodeRadius, node.px));
+                        node.py = Math.max(this.nodeRadius, Math.min(this.canvas.height - this.nodeRadius, node.py));
+                    });
+                }
+
+                return nodes.map(node => {
+                    const x = (node.px - this.nodeRadius) / (this.canvas.width - 2 * this.nodeRadius);
+                    const y = (node.py - this.nodeRadius) / (this.canvas.height - 2 * this.nodeRadius);
+                    return {
+                        ...node,
+                        x: Math.max(0, Math.min(1, x)),
+                        y: Math.max(0, Math.min(1, y)),
+                        baseX: x * this.canvas.width,
+                        baseY: y * this.canvas.height,
+                        px: x * this.canvas.width,
+                        py: y * this.canvas.height
+                    };
+                });
+            }
+
+            initEventListeners() {
+                this.canvas.addEventListener('mousedown', e => this.startDragging(e));
+                this.canvas.addEventListener('mousemove', e => this.updateDragging(e));
+                this.canvas.addEventListener('mouseup', () => this.stopDragging());
+                this.canvas.addEventListener('touchstart', e => this.startDragging(e));
+                this.canvas.addEventListener('touchmove', e => this.updateDragging(e));
+                this.canvas.addEventListener('touchend', () => this.stopDragging());
+                this.canvas.addEventListener('mousemove', e => this.updateHover(e));
+                window.addEventListener('resize', () => this.resizeCanvas());
+                window.addEventListener('load', () => {
+                    console.log('Window loaded, forcing canvas resize');
+                    this.resizeCanvas();
+                });
+            }
+
+            resizeCanvas() {
+                const container = this.canvas.parentElement;
+                if (!container) {
+                    console.error('Canvas container not found');
+                    return;
+                }
+                const isMobileSkills = window.innerWidth <= 768;
+                this.canvas.width = container.clientWidth || window.innerWidth;
+                this.canvas.height = isMobileSkills ? 600 : 800;
+                this.nodeRadius = isMobileSkills ? 15 : 25;
+                this.maxDistance = isMobileSkills ? 100 : 140;
+                this.collisionDistance = this.nodeRadius * 2.5;
+                this.maxFloatRadius = isMobileSkills ? 40 : 100;
+                skillsConstellationCanvasWidth = this.canvas.width;
+                skillsConstellationCanvasHeight = this.canvas.height;
+                console.log('Canvas resized:', {
+                    width: this.canvas.width,
+                    height: this.canvas.height,
+                    ctx: !!this.ctx,
+                    containerWidth: container.clientWidth,
+                    containerHeight: container.clientHeight,
+                    nodeRadius: this.nodeRadius,
+                    maxDistance: this.maxDistance,
+                    collisionDistance: this.collisionDistance,
+                    isMobileSkills
+                });
+                this.skills = this.scatterNodes(this.skills);
+            }
+
+            getMousePos(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            }
+
+            updateHover(e) {
+                const pos = this.getMousePos(e);
+                this.hoveredNode = this.skills.find(skill => {
+                    const dx = pos.x - skill.px;
+                    const dy = pos.y - skill.py;
+                    return Math.sqrt(dx * dx + dy * dy) < this.nodeRadius;
+                });
+            }
+
+            startDragging(e) {
+                e.preventDefault();
+                const pos = this.getMousePos(e);
+                this.draggedNode = this.skills.find(skill => {
+                    const dx = pos.x - skill.px;
+                    const dy = pos.y - skill.py;
+                    return Math.sqrt(dx * dx + dy * dy) < this.nodeRadius;
+                });
+                if (this.draggedNode) {
+                    this.draggedNode.isDragging = true;
+                    this.draggedNode.vx += (Math.random() - 0.5) * 0.3;
+                    this.draggedNode.vy += (Math.random() - 0.5) * 0.3;
+                    console.log(`Started dragging ${this.draggedNode.name}`);
+                }
+            }
+
+            updateDragging(e) {
+                e.preventDefault();
+                const pos = this.getMousePos(e);
+                if (this.draggedNode) {
+                    this.draggedNode.px = pos.x;
+                    this.draggedNode.py = pos.y;
+                    this.draggedNode.vx = 0;
+                    this.draggedNode.vy = 0;
+                    this.skills.forEach(skill => {
+                        if (skill !== this.draggedNode && !skill.isDragging) {
+                            const dx = this.draggedNode.px - skill.px;
+                            const dy = this.draggedNode.py - skill.py;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            if (distance < this.maxDistance) {
+                                const force = (1 - distance / this.maxDistance) * 0.2;
+                                skill.vx += dx * force;
+                                skill.vy += dy * force;
+                            }
+                        }
+                    });
+                }
+            }
+
+            stopDragging() {
+                if (this.draggedNode) {
+                    this.draggedNode.isDragging = false;
+                    this.draggedNode.vx += (Math.random() - 0.5) * 0.3;
+                    this.draggedNode.vy += (Math.random() - 0.5) * 0.3;
+                    console.log(`Stopped dragging ${this.draggedNode.name}`);
+                    this.draggedNode = null;
+                }
+            }
+
+            updatePhysics() {
+                this.skills.forEach(skill => {
+                    if (!skill.isDragging) {
+                        const dx = skill.px - skill.baseX;
+                        const dy = skill.py - skill.baseY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance > this.maxFloatRadius) {
+                            const angle = Math.atan2(dy, dx);
+                            const force = (distance - this.maxFloatRadius) * this.springConstant;
+                            skill.vx -= Math.cos(angle) * force;
+                            skill.vy -= Math.sin(angle) * force;
+                        } else {
+                            skill.vx += (Math.random() - 0.5) * 0.03;
+                            skill.vy += (Math.random() - 0.5) * 0.03;
+                        }
+
+                        const springDx = skill.baseX - skill.px;
+                        const springDy = skill.baseY - skill.py;
+                        skill.fx = springDx * this.springConstant;
+                        skill.fy = springDy * this.springConstant;
+
+                        this.skills.forEach(other => {
+                            if (skill !== other && !other.isDragging) {
+                                const dx = skill.px - other.px;
+                                const dy = skill.py - other.py;
+                                const distance = Math.sqrt(dx * dx + dy * dy);
+                                if (distance < this.collisionDistance && distance > 0) {
+                                    const force = (this.collisionDistance - distance) * 0.2 * (1 - distance / this.collisionDistance);
+                                    const angle = Math.atan2(dy, dx);
+                                    skill.fx += Math.cos(angle) * force;
+                                    skill.fy += Math.sin(angle) * force;
+                                    other.fx -= Math.cos(angle) * force;
+                                    other.fy -= Math.cos(angle) * force;
+                                    skill.pulseTime = 8;
+                                    other.pulseTime = 8;
+                                }
+                            }
+                        });
+
+                        skill.vx = (skill.vx + skill.fx) * this.damping;
+                        skill.vy = (skill.vy + skill.fy) * this.damping;
+                        skill.px += skill.vx;
+                        skill.py += skill.vy;
+
+                        skill.px = Math.max(this.nodeRadius, Math.min(this.canvas.width - this.nodeRadius, skill.px));
+                        skill.py = Math.max(this.nodeRadius, Math.min(this.canvas.height - this.nodeRadius, skill.py));
+
+                        if (skill.pulseTime > 0) {
+                            skill.pulseRadius = this.nodeRadius * 0.05 * (skill.pulseTime / 8);
+                            skill.pulseTime--;
+                        } else {
+                            skill.pulseRadius = Math.sin(skillsFrameCount * 0.05) * 0.1;
+                        }
+                    }
+                });
+            }
+
+            drawConnections() {
+                let connectionCount = 0;
+                this.skills.forEach((skill, i) => {
+                    for (let j = i + 1; j < this.skills.length; j++) {
+                        const other = this.skills[j];
+                        const dx = skill.px - other.px;
+                        const dy = skill.py - other.py;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < this.maxDistance && distance > 0) {
+                            const opacity = 1 - distance / this.maxDistance;
+                            this.ctx.strokeStyle = document.body.classList.contains('light-mode')
+                                ? `rgba(96, 165, 250, ${opacity * 0.7})`
+                                : `rgba(0, 240, 255, ${opacity * 0.7})`;
+                            this.ctx.lineWidth = 1.5;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(skill.px, skill.py);
+                            this.ctx.lineTo(other.px, other.py);
+                            this.ctx.stroke();
+                            connectionCount++;
+                        }
+                    }
+                });
+                console.log(`Drew ${connectionCount} connections with lineWidth=1.5, opacity=0.7`);
+            }
+
+            // drawNode(skill) {
+            //     const isHovered = skill === this.hoveredNode;
+            //     const radius = isHovered ? this.nodeRadius * 1.2 : this.nodeRadius + skill.pulseRadius;
+            //     const color = this.categoryColors[skill.category] || '#00f0ff';
+
+            //     console.log(`Drawing node: ${skill.name} at (${skill.px}, ${skill.py}), radius: ${radius}, hovered: ${isHovered}`);
+
+            //     this.ctx.save();
+            //     this.ctx.beginPath();
+            //     this.ctx.arc(skill.px, skill.py, radius, 0, Math.PI * 2);
+            //     this.ctx.fillStyle = document.body.classList.contains('light-mode')
+            //         ? 'rgba(255, 255, 255, 0.3)'
+            //         : 'rgba(10, 14, 26, 0.9)';
+            //     this.ctx.shadowBlur = isHovered ? 20 : 10;
+            //     this.ctx.shadowColor = color;
+            //     this.ctx.fill();
+            //     this.ctx.shadowBlur = 0;
+
+            //     this.ctx.strokeStyle = isHovered ? '#ff00ff' : color;
+            //     this.ctx.lineWidth = isHovered ? 3 : 2;
+            //     this.ctx.stroke();
+
+            //     this.ctx.clip();
+
+            //     if (skill.logoUrl && skillsImageCache[skill.name] && skillsImageCache[skill.name].complete) {
+            //         try {
+            //             const img = skillsImageCache[skill.name];
+            //             const imgSize = radius * 1.8;
+            //             this.ctx.drawImage(img, skill.px - imgSize / 2, skill.py - imgSize / 2, imgSize, imgSize);
+            //         } catch (error) {
+            //             console.warn(`Error rendering logo for ${skill.name}:`, error);
+            //             this.drawTextNode(skill, radius, isHovered);
+            //         }
+            //     } else {
+            //         this.drawTextNode(skill, radius, isHovered);
+            //     }
+
+            //     this.ctx.restore();
+
+            //     if (isHovered) {
+            //         const label = `${skill.name} (${skill.category})`;
+            //         const textWidth = this.ctx.measureText(label).width;
+            //         const padding = 10;
+            //         const labelHeight = radius * 0.6;
+            //         const labelX = skill.px;
+            //         const labelY = skill.py - radius - 10;
+
+            //         this.ctx.fillStyle = document.body.classList.contains('light-mode')
+            //             ? 'rgba(255, 255, 255, 0.9)'
+            //             : 'rgba(10, 14, 26, 0.9)';
+            //         this.ctx.fillRect(labelX - textWidth / 2 - padding, labelY - labelHeight, textWidth + 2 * padding, labelHeight + padding);
+
+            //         this.ctx.strokeStyle = color;
+            //         this.ctx.lineWidth = 1;
+            //         this.ctx.strokeRect(labelX - textWidth / 2 - padding, labelY - labelHeight, textWidth + 2 * padding, labelHeight + padding);
+
+            //         this.ctx.font = `${radius * 0.4}px 'Orbitron', sans-serif`;
+            //         this.ctx.fillStyle = isHovered ? '#ff00ff' : '#d1d5db';
+            //         this.ctx.textAlign = 'center';
+            //         this.ctx.textBaseline = 'middle';
+            //         this.ctx.fillText(label, labelX, labelY - labelHeight / 2);
+            //     }
+            // }
+
+            drawNode(skill) {
+    const isHovered = skill === this.hoveredNode;
+    const radius = isHovered ? this.nodeRadius * 1.2 : this.nodeRadius + skill.pulseRadius;
+    const color = this.categoryColors[skill.category] || '#00f0ff';
+
+    console.log(`Drawing node: ${skill.name} at (${skill.px}, ${skill.py}), radius: ${radius}, hovered: ${isHovered}, logoUrl: ${skill.logoUrl}`);
+
+    this.ctx.save();
+    this.ctx.beginPath();
+    this.ctx.arc(skill.px, skill.py, radius, 0, Math.PI * 2);
+    this.ctx.fillStyle = document.body.classList.contains('light-mode') 
+        ? 'rgba(255, 255, 255, 0.3)' 
+        : 'rgba(10, 14, 26, 0.9)';
+    this.ctx.shadowBlur = isHovered ? 20 : 10;
+    this.ctx.shadowColor = color;
+    this.ctx.fill();
+    this.ctx.shadowBlur = 0;
+
+    this.ctx.strokeStyle = isHovered ? '#ff00ff' : color;
+    this.ctx.lineWidth = isHovered ? 3 : 2;
+    this.ctx.stroke();
+
+    this.ctx.clip();
+
+    if (skill.logoUrl && skillsImageCache[skill.name]) {
+        const img = skillsImageCache[skill.name];
+        if (img.complete && img.naturalWidth > 0) {
+            try {
+                const imgSize = radius * 1.8;
+                this.ctx.drawImage(img, skill.px - imgSize / 2, skill.py - imgSize / 2, imgSize, imgSize);
+                console.log(`Successfully drew logo for ${skill.name} from ${skill.logoUrl}`);
+            } catch (error) {
+                console.error(`Error rendering logo for ${skill.name} from ${skill.logoUrl}:`, error);
+                this.drawTextNode(skill, radius, isHovered);
+            }
+        } else {
+            console.warn(`Image not loaded for ${skill.name}. Complete: ${img.complete}, Width: ${img.naturalWidth}, URL: ${skill.logoUrl}`);
+            this.drawTextNode(skill, radius, isHovered);
+        }
+    } else {
+        console.log(`No logo for ${skill.name}. logoUrl: ${skill.logoUrl}, cache: ${!!skillsImageCache[skill.name]}`);
+        this.drawTextNode(skill, radius, isHovered);
+    }
+
+    this.ctx.restore();
+
+    if (isHovered) {
+        const label = `${skill.name} (${skill.category})`;
+        const textWidth = this.ctx.measureText(label).width;
+        const padding = 10;
+        const labelHeight = radius * 0.6;
+        const labelX = skill.px;
+        const labelY = skill.py - radius - 10;
+
+        this.ctx.fillStyle = document.body.classList.contains('light-mode') 
+            ? 'rgba(255, 255, 255, 0.9)' 
+            : 'rgba(10, 14, 26, 0.9)';
+        this.ctx.fillRect(labelX - textWidth / 2 - padding, labelY - labelHeight, textWidth + 2 * padding, labelHeight + padding);
+        
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeRect(labelX - textWidth / 2 - padding, labelY - labelHeight, textWidth + 2 * padding, labelHeight + padding);
+
+        this.ctx.font = `${radius * 0.4}px 'Orbitron', sans-serif`;
+        this.ctx.fillStyle = isHovered ? '#ff00ff' : '#d1d5db';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillText(label, labelX, labelY - labelHeight / 2);
+    }
+}
+
+            drawTextNode(skill, radius, isHovered) {
+                this.ctx.save();
+                if (skill.icon) {
+                    try {
+                        const isValidIcon = skill.icon.includes('fa-') && (skill.icon.includes('fas ') || skill.icon.includes('fab '));
+                        if (isValidIcon) {
+                            const fontSize = radius * 0.7;
+                            this.ctx.font = `${fontSize}px 'Font Awesome 6 Free'`;
+                            this.ctx.fillStyle = isHovered ? '#ff00ff' : '#d1d5db';
+                            this.ctx.textAlign = 'center';
+                            this.ctx.textBaseline = 'middle';
+                            const iconMap = {
+                                'fa-python': '\uf3e2',
+                                'fa-java': '\uf4e4',
+                                'fa-c': '\uf069',
+                                'fa-android': '\uf17b',
+                                'fa-terminal': '\uf120',
+                                'fa-microchip': '\uf2db',
+                                'fa-database': '\uf1c0',
+                                'fa-link': '\uf0c1',
+                                'fa-flask': '\uf0c3',
+                                'fa-cogs': '\uf085',
+                                'fa-camera': '\uf030',
+                                'fa-server': '\uf233',
+                                'fa-chart-line': '\uf201',
+                                'fa-calculator': '\uf1ec',
+                                'fa-gamepad': '\uf11b',
+                                'fa-fire': '\uf06d',
+                                'fa-cube': '\uf1b2',
+                                'fa-html5': '\uf13b',
+                                'fa-css3-alt': '\uf38b',
+                                'fa-js': '\uf3b8',
+                                'fa-php': '\uf457',
+                                'fa-globe': '\uf0ac',
+                                'fa-language': '\uf1ab'
+                            };
+                            const iconCode = iconMap[skill.icon.split(' ').pop()];
+                            if (iconCode) {
+                                this.ctx.fillText(iconCode, skill.px, skill.py);
+                            } else {
+                                throw new Error(`No icon code for ${skill.icon}`);
+                            }
+                        } else {
+                            throw new Error(`Invalid icon class for ${skill.name}: ${skill.icon}`);
+                        }
+                    } catch (error) {
+                        console.warn(`Error rendering icon for ${skill.name}:`, error);
+                        this.drawFallbackText(skill, radius, isHovered);
+                    }
+                } else {
+                    this.drawFallbackText(skill, radius, isHovered);
+                }
+                this.ctx.restore();
+            }
+
+            drawFallbackText(skill, radius, isHovered) {
+                const fontSize = radius * 0.5;
+                this.ctx.font = `${fontSize}px 'Orbitron', sans-serif`;
+                this.ctx.fillStyle = isHovered ? '#ff00ff' : '#d1d5db';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                const words = skill.name.split(' ');
+                if (words.length > 1) {
+                    this.ctx.fillText(words[0], skill.px, skill.py - fontSize * 0.3);
+                    this.ctx.fillText(words[1], skill.px, skill.py + fontSize * 0.7);
+                } else {
+                    this.ctx.fillText(skill.name, skill.px, skill.py);
+                }
+            }
+
+            render() {
+                if (!this.ctx) {
+                    console.error('Cannot render: Canvas context is not initialized');
+                    return;
+                }
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.updatePhysics();
+                this.drawConnections();
+                this.skills.forEach(skill => this.drawNode(skill));
+                skillsFrameCount++;
+                console.log(`Rendered frame ${skillsFrameCount}, nodes: ${this.skills.length}`);
+            }
+
+            start() {
+                this.resizeCanvas();
+                const animate = () => {
+                    this.render();
+                    requestAnimationFrame(animate);
+                };
+                animate();
+                console.log('Skills constellation animation started');
+            }
+        }
+
+        if (skillsConstellationCtx) {
+            console.log('Initializing SkillsConstellationWeb');
+            const constellation = new SkillsConstellationWeb(skillsConstellationCanvas, skillsConstellationCtx, skillsConstellationData);
+            constellation.start();
+        } else {
+            console.error('Skills constellation canvas context is not available');
+        }
+    </script>
+</body>
+
+</html>
